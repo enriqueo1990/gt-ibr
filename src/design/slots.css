@@ -1,0 +1,23 @@
+/* Puente para los <image-slot> del diseño (herramienta de Design que no viaja).
+   Replica las dimensiones que el elemento <image-slot> recibía vía CSS, sobre
+   un <div class="img-slot">. NO modifica site.css. Las fotos reales se cargan
+   manualmente más adelante. */
+.img-slot {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--surface-2);
+  color: var(--muted);
+  font: 500 0.82rem/1.4 var(--body);
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px dashed var(--line-strong);
+}
+.bento .img-slot { width: 100%; height: 100%; box-shadow: 0 16px 40px -28px rgba(27, 42, 74, 0.45); }
+.hero-media .img-slot { width: 100%; height: clamp(360px, 46vw, 540px); box-shadow: 0 24px 60px -28px rgba(27, 42, 74, 0.4); }
+.team-card .img-slot { width: 100%; height: 100%; min-height: 300px; border-radius: 0; }
+@media (max-width: 1000px) { .team-card .img-slot { min-height: 240px; } }
+
+/* Slot con foto real: sin borde/padding de placeholder; la imagen llena el área. */
+.img-slot.has-photo { padding: 0; border: 0; overflow: hidden; }
+.img-slot.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }

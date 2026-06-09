@@ -1,0 +1,8 @@
+.serie-hero{display:grid;grid-template-columns:1.4fr .9fr;gap:clamp(28px,4vw,52px);align-items:center}
+.serie-art{aspect-ratio:16/10;border-radius:18px;display:grid;place-items:center;box-shadow:0 24px 60px -30px rgba(0,0,0,.5);position:relative;overflow:hidden}
+.serie-art .bk{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;letter-spacing:-.01em;text-align:center;padding:0 20px}
+.serie-stats{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;color:rgba(255,255,255,.7);font-size:.93rem}
+.serie-stats .mi{display:flex;align-items:center;gap:8px}
+.serie-stats .mi svg{width:16px;height:16px;color:var(--gold)}
+.serie-stats b{color:#fff;font-weight:600}
+@media(max-width:760px){.serie-hero{grid-template-columns:1fr}.serie-art{order:-1}}

@@ -1,0 +1,12 @@
+/* ── Tailwind v4 SIN Preflight ──
+   El CSS de Claude Design (design/site.css) trae su propio reset; el Preflight
+   de Tailwind solo interferiría. Tailwind queda como proveedor de UTILIDADES
+   para los módulos portados (AudioPlayer con .tw-scope). Ver plan, Fase 4. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  /* Acento de los módulos Tailwind = carmín IBR (paleta del diseño). */
+  --color-brand: #D7263D;
+}
