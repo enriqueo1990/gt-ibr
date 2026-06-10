@@ -29,6 +29,7 @@ export default function Sermones() {
   const [filtroPredicador, setFiltroPredicador] = useState<string | null>(null)
   const [filtroTema, setFiltroTema] = useState<string | null>(null)
   const [query, setQuery] = useState('')
+  const [orden, setOrden] = useState<'recientes' | 'antiguas'>('recientes')
 
   const sermones = sermonsState.data ?? []
   const series = seriesState.data ?? []
@@ -62,8 +63,12 @@ export default function Sermones() {
         if (!haystack.includes(q)) return false
       }
       return true
+    }).sort((a, b) => {
+      const da = a.sermon_data.date ?? ''
+      const db = b.sermon_data.date ?? ''
+      return orden === 'recientes' ? db.localeCompare(da) : da.localeCompare(db)
     })
-  }, [sermones, filtroSerie, filtroPredicador, filtroTema, query])
+  }, [sermones, filtroSerie, filtroPredicador, filtroTema, query, orden])
 
   return (
     <Layout>
@@ -135,6 +140,16 @@ export default function Sermones() {
                     {temas.map((t) => (
                       <option key={t.id} value={t.slug}>{t.name}</option>
                     ))}
+                  </select>
+                </div>
+                <div className="sel">
+                  <select
+                    aria-label="Ordenar"
+                    value={orden}
+                    onChange={(e) => setOrden(e.target.value as 'recientes' | 'antiguas')}
+                  >
+                    <option value="recientes">Más recientes</option>
+                    <option value="antiguas">Más antiguas</option>
                   </select>
                 </div>
               </div>
