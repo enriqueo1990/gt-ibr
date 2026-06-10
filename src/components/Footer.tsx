@@ -3,7 +3,7 @@ import { useFetch } from '../lib/hooks'
 import { getMedios } from '../lib/api'
 
 export function Footer() {
-  const { data: medios } = useFetch(getMedios, [])
+  const { data: medios, loading: mediosLoading } = useFetch(getMedios, [])
   return (
     <footer>
       <div className="wrap">
@@ -12,7 +12,7 @@ export function Footer() {
             <div className="brand">
               {medios?.site_logo
                 ? <img src={medios.site_logo} alt="Iglesia Bíblica Reformada" className="brand-logo" />
-                : <><span className="mark">IBR</span><span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span></>
+                : !mediosLoading && <><span className="mark">IBR</span><span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span></>
               }
             </div>
             <p className="tagline">Somos una iglesia centrada en la Palabra de Dios y comprometida con comunicar su Gloria por medio del Evangelio.</p>
