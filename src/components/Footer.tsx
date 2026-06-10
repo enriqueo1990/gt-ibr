@@ -40,7 +40,7 @@ export function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>© 2024 Iglesia Bíblica Reformada · Denton, TX</span>
+          <span>© 2026 Iglesia Bíblica Reformada · Denton, TX</span>
           <span>Centrados en la Palabra · Comprometidos con el Evangelio</span>
         </div>
       </div>

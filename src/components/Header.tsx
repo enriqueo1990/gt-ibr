@@ -44,9 +44,6 @@ export function Header() {
             ))}
           </nav>
           <div className="nav-tools">
-            <Link className="icon-btn" to="/sermones" aria-label="Buscar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
-            </Link>
             <a className="btn btn-primary" href={GIVING} target="_blank" rel="noopener">Ofrendar</a>
             <button className="icon-btn burger" aria-label="Menú" onClick={() => setOpen((v) => !v)}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
