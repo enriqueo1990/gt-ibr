@@ -173,7 +173,7 @@ export default function Sermones() {
                               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
                             />
                           )}
-                          <span className="label">{serie ?? sd.passage}</span>
+                          {!thumbImg && <span className="label">{serie ?? sd.passage}</span>}
                           <span className="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
                         </div>
                         <div className="sermon-meta">
