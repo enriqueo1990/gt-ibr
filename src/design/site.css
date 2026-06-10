@@ -352,6 +352,8 @@ footer .tagline{margin-top:20px;max-width:38ch;font-size:.97rem;color:rgba(255,2
 .give::after{animation:blobDrift 11s ease-in-out infinite reverse;will-change:transform}
 .pv-card{transition:transform .22s ease-out,box-shadow .22s ease-out,border-color .22s ease-out}
 .fact{transition:transform .2s ease-out,box-shadow .2s ease-out,border-color .2s ease-out}
+.sermon-card{transition:transform .2s ease-out,box-shadow .2s ease-out,border-color .2s ease-out}
+.event-card{transition:transform .18s ease-out,box-shadow .18s ease-out}
 .date-block{transition:transform .2s ease-out}
 .sched-time{transition:color .2s ease}
 @media(hover:hover) and (pointer:fine){

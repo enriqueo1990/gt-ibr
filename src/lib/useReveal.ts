@@ -42,10 +42,16 @@ export function useReveal() {
 
     // Red de seguridad: revelar cualquier .reveal pendiente.
     const fallback = window.setTimeout(() => {
-      document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
+      document.querySelectorAll<HTMLElement>('.reveal:not(.in)').forEach((el) => {
         el.style.transition = 'none';
         el.classList.add('in');
       });
+      // Restore stylesheet transitions after the snap paint so hover effects work.
+      window.setTimeout(() => {
+        document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
+          el.style.transition = '';
+        });
+      }, 50);
     }, 1600);
 
     return () => {
