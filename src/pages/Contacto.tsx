@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { wpPost } from '../lib/api'
 import { Link } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { useReveal } from '../lib/useReveal'
@@ -10,6 +11,7 @@ export default function Contacto() {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('Quiero visitar la iglesia')
   const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
   const [note, setNote] = useState<{ text: string; tone: 'default' | 'error' | 'success' }>({
     text: 'También puedes escribirnos directamente a iglebiblicareformada@gmail.com',
     tone: 'default',
@@ -18,16 +20,22 @@ export default function Contacto() {
   const noteColor =
     note.tone === 'error' ? 'var(--accent)' : note.tone === 'success' ? 'var(--gold)' : undefined
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (!name || !email || !message) {
       setNote({ text: 'Por favor completa todos los campos.', tone: 'error' })
       return
     }
-    const mailSubject = encodeURIComponent('Contacto desde la web — ' + name)
-    const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\n${message}`)
-    window.location.href = `mailto:iglebiblicareformada@gmail.com?subject=${mailSubject}&body=${body}`
-    setNote({ text: '¡Gracias! Abrimos tu correo para enviar el mensaje.', tone: 'success' })
+    setSending(true)
+    try {
+      await wpPost('/gtc-ibr/v1/contacto', { name, email, subject, message })
+      setNote({ text: '¡Mensaje enviado! Te responderemos pronto.', tone: 'success' })
+      setName(''); setEmail(''); setSubject('Quiero visitar la iglesia'); setMessage('')
+    } catch (err) {
+      setNote({ text: err instanceof Error ? err.message : 'No se pudo enviar. Intenta de nuevo.', tone: 'error' })
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -96,7 +104,7 @@ export default function Contacto() {
                   <label htmlFor="cf-msg">Mensaje</label>
                   <textarea id="cf-msg" name="message" placeholder="¿En qué podemos servirte?" required value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                 </div>
-                <button className="btn btn-primary" type="submit" style={{ justifyContent: 'center' }}>Enviar mensaje</button>
+                <button className="btn btn-primary" type="submit" disabled={sending} style={{ justifyContent: 'center' }}>{sending ? 'Enviando…' : 'Enviar mensaje'}</button>
                 <p className="form-note" id="formNote" style={{ color: noteColor }}>{note.text}</p>
               </form>
             </div>

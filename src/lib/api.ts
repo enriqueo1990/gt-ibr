@@ -20,6 +20,19 @@ export async function wpFetch<T>(path: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+export async function wpPost<T>(path: string, body: Record<string, string>): Promise<T> {
+  const response = await fetch(`${BASE_URL}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error((data as { message?: string }).message ?? `Error ${response.status}`);
+  }
+  return data as T;
+}
+
 /* ── Rutas custom: namespace gtc-sermones/v1 ── */
 
 export function getLatestSermons(perPage = 10): Promise<WPSermon[]> {
