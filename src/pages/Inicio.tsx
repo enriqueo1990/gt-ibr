@@ -3,7 +3,7 @@ import { Layout } from '../components/Layout'
 import { ImageSlot } from '../components/ImageSlot'
 import { useReveal } from '../lib/useReveal'
 import { useFetch } from '../lib/hooks'
-import { getAllSeries, getEvents, getMedios } from '../lib/api'
+import { getAllSeries, getLatestSermons, getEvents, getMedios } from '../lib/api'
 import { formatDate } from '../lib/calendar'
 import type { WPEvent } from '../lib/types'
 import '../design/inicio.css'
@@ -44,6 +44,7 @@ export default function Inicio() {
   useReveal()
 
   const seriesState = useFetch(() => getAllSeries(), [])
+  const latestSermonsState = useFetch(() => getLatestSermons(20), [])
   const eventsState = useFetch(() => getEvents(), [])
   const mediosState = useFetch(() => getMedios(), [])
   const galeria: Record<string, string> = mediosState.data?.galeria ?? {}
@@ -142,11 +143,19 @@ export default function Inicio() {
             )}
 
             <div className="sermon-grid">
-              {(seriesState.data ?? [])
-                .slice()
-                .sort((a, b) => (b.series_data.latest_sermon_id ?? 0) - (a.series_data.latest_sermon_id ?? 0))
-                .slice(0, 3)
-                .map((s, i) => {
+              {(() => {
+                const seriesMap = Object.fromEntries((seriesState.data ?? []).map((s) => [s.slug, s]))
+                const slugsOrdenados: string[] = []
+                for (const sermon of (latestSermonsState.data ?? [])) {
+                  for (const term of sermon.sermon_data.series) {
+                    if (!slugsOrdenados.includes(term.slug) && seriesMap[term.slug]) {
+                      slugsOrdenados.push(term.slug)
+                    }
+                  }
+                  if (slugsOrdenados.length >= 3) break
+                }
+                return slugsOrdenados.map((slug, i) => {
+                  const s = seriesMap[slug]
                 const img = s.series_data.image_url
                 const grad = SERIES_GRADS[i % SERIES_GRADS.length]
                 return (
@@ -165,7 +174,8 @@ export default function Inicio() {
                     </div>
                   </Link>
                 )
-              })}
+                })
+              })()}
             </div>
           </div>
         </section>
