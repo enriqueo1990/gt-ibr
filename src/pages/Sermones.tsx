@@ -32,6 +32,10 @@ export default function Sermones() {
 
   const sermones = sermonsState.data ?? []
   const series = seriesState.data ?? []
+  const seriesImageMap = useMemo(
+    () => Object.fromEntries(series.map((s) => [s.slug, s.series_data.image_url])),
+    [series]
+  )
   const predicadores = preachersState.data ?? []
   const temas = topicsState.data ?? []
 
@@ -151,17 +155,19 @@ export default function Sermones() {
                     const sd = sermon.sermon_data
                     const title = sermon.title.rendered
                     const serie = sd.series[0]?.name
+                    const serieSlug = sd.series[0]?.slug
                     const preacher = sd.preachers[0]?.name
                     const sub = [sd.passage, sd.date_label].filter(Boolean).join(' · ')
+                    const thumbImg = sd.featured_image || (serieSlug ? seriesImageMap[serieSlug] : '') || ''
                     return (
                       <Link key={sermon.id} className="sermon-card" to={`/sermones/${sermon.slug}`}>
                         <div
                           className="sermon-thumb"
-                          style={sd.featured_image ? undefined : { background: FALLBACK_GRADS[i % FALLBACK_GRADS.length] }}
+                          style={thumbImg ? undefined : { background: FALLBACK_GRADS[i % FALLBACK_GRADS.length] }}
                         >
-                          {sd.featured_image && (
+                          {thumbImg && (
                             <img
-                              src={sd.featured_image}
+                              src={thumbImg}
                               referrerPolicy="no-referrer"
                               alt={title}
                               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
