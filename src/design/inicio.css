@@ -41,7 +41,7 @@
   .hero-v .wrap{position:relative;z-index:4;width:100%;padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(64px,8vw,96px)}
   .hero-v .eyebrow{color:var(--gold)}
   .hero-v h1{color:#fff;font-size:clamp(2.05rem,4.4vw,3.4rem);font-weight:800;max-width:20ch;text-shadow:0 2px 30px rgba(0,0,0,.25)}
-  .hero-v h1 .accent{color:#fff;border-bottom:5px solid var(--accent);padding-bottom:2px}
+  .hero-v h1 .accent{color:var(--accent)}
   .hero-v p.lead{color:rgba(255,255,255,.86);font-size:clamp(1.08rem,1.5vw,1.32rem);max-width:46ch;margin-top:22px;text-wrap:pretty}
   .hero-v .schedule-chip{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(6px);box-shadow:none}
   .hero-v .schedule-chip b{color:#fff}

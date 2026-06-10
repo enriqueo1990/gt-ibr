@@ -74,6 +74,7 @@ export default function Inicio() {
                 Visítanos un domingo
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </a>
+              <Link className="btn btn-ghost" to="/sermones">Escuchar un sermón</Link>
             </div>
           </div>
         </section>
