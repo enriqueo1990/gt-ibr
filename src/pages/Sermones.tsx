@@ -157,7 +157,7 @@ export default function Sermones() {
                     const serie = sd.series[0]?.name
                     const serieSlug = sd.series[0]?.slug
                     const preacher = sd.preachers[0]?.name
-                    const sub = [sd.passage, sd.date_label].filter(Boolean).join(' · ')
+                    const sub = sd.date_label || ''
                     const thumbImg = sd.featured_image || (serieSlug ? seriesImageMap[serieSlug] : '') || ''
                     return (
                       <Link key={sermon.id} className="sermon-card" to={`/sermones/${sermon.slug}`}>
@@ -178,8 +178,14 @@ export default function Sermones() {
                         </div>
                         <div className="sermon-meta">
                           <span className="serie">{title}</span>
-                          {serie && <span className="sub">{serie}</span>}
-                          <span className="sub">{sub}</span>
+                          {(serie || sd.passage) && (
+                            <span className="sub">
+                              {serie && <b>{serie}</b>}
+                              {serie && sd.passage && ' · '}
+                              {sd.passage}
+                            </span>
+                          )}
+                          {sub && <span className="sub">{sub}</span>}
                           <div className="row">
                             {preacher && (
                               <span className="preacher"><span className="av">{initials(preacher)}</span>{preacher}</span>
