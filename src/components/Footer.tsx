@@ -10,8 +10,8 @@ export function Footer() {
         <div className="foot-grid">
           <div>
             <div className="brand">
-              {medios?.site_logo_dark
-                ? <img src={medios.site_logo_dark} alt="Iglesia Bíblica Reformada" className="brand-logo" />
+              {medios?.site_logo
+                ? <img src={medios.site_logo} alt="Iglesia Bíblica Reformada" className="brand-logo" />
                 : <><span className="mark">IBR</span><span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span></>
               }
             </div>
