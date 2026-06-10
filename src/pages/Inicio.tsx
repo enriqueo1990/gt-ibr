@@ -68,20 +68,18 @@ export default function Inicio() {
           <div className="hero-overlay"></div>
 
           <div className="wrap">
-            <div className="reveal">
-              <h1 style={{ marginTop: 0 }}>Centrados en la <span className="accent">Palabra</span>, comprometidos con el Evangelio.</h1>
-              <p className="lead">Somos una iglesia centrada en la Palabra de Dios y comprometida con comunicar su Gloria por medio del Evangelio en el norte de Texas.</p>
-              <div className="schedule-chip">
-                <span className="dot"></span>
-                <span><b>Domingos</b> · 10:00 AM Oración &nbsp;·&nbsp; 10:30 AM Reunión General</span>
-              </div>
-              <div className="hero-cta">
-                <a className="btn btn-primary" href="#visitanos">
-                  Visítanos un domingo
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                </a>
-                <Link className="btn btn-ghost" to="/sermones">Escuchar un sermón</Link>
-              </div>
+            <h1 className="reveal" data-delay="0ms" style={{ marginTop: 0 }}>Centrados en la <span className="accent">Palabra</span>, comprometidos con el Evangelio.</h1>
+            <p className="lead reveal" data-delay="140ms">Somos una iglesia centrada en la Palabra de Dios y comprometida con comunicar su Gloria por medio del Evangelio en el norte de Texas.</p>
+            <div className="schedule-chip reveal" data-delay="270ms">
+              <span className="dot"></span>
+              <span><b>Domingos</b> · 10:00 AM Oración &nbsp;·&nbsp; 10:30 AM Reunión General</span>
+            </div>
+            <div className="hero-cta reveal" data-delay="390ms">
+              <a className="btn btn-primary" href="#visitanos">
+                Visítanos un domingo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+              <Link className="btn btn-ghost" to="/sermones">Escuchar un sermón</Link>
             </div>
           </div>
         </section>
@@ -159,7 +157,7 @@ export default function Inicio() {
                 const img = s.series_data.image_url
                 const grad = SERIES_GRADS[i % SERIES_GRADS.length]
                 return (
-                  <Link key={s.id} className="sermon-card" to={`/series/${s.slug}`}>
+                  <Link key={s.id} className="sermon-card reveal" data-delay={`${i * 130}ms`} to={`/series/${s.slug}`}>
                     <div className="sermon-thumb" style={{ background: grad }}>
                       {img && <img src={img} referrerPolicy="no-referrer" alt={s.name} />}
                       {s.series_data.state === 'en_curso' && <span className="label">Serie actual</span>}

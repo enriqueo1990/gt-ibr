@@ -21,7 +21,9 @@ export function useReveal() {
     const register = (el: HTMLElement) => {
       if (el.dataset.revealReg) return;
       el.dataset.revealReg = '1';
-      el.style.transitionDelay = `${(counter++ % 3) * 70}ms`;
+      el.style.transitionDelay = el.dataset.delay !== undefined
+        ? el.dataset.delay
+        : `${(counter++ % 3) * 70}ms`;
       if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
         el.classList.add('in');
       } else {

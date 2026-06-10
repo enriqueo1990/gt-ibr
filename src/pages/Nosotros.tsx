@@ -46,13 +46,12 @@ export default function Nosotros() {
                 <span className="eyebrow">El contexto</span>
                 <h2 style={{ marginTop: 12 }}>Datos destacados</h2>
               </div>
-              <span className="placeholder-note" style={{ marginBottom: 8 }}>◇ algunos datos hacen referencia a 2023 — confirmar cifras</span>
             </div>
             <div className="facts-grid">
-              <div className="fact reveal"><div className="ix">1</div><p>Texas tendrá más hispanos que anglos en 2023.</p></div>
-              <div className="fact reveal"><div className="ix">2</div><p>Estados Unidos tiene la segunda mayor población hispanohablante del mundo, después de México, seguido de cerca por Argentina y Colombia.</p></div>
-              <div className="fact reveal"><div className="ix">3</div><p>El español es la segunda lengua más hablada del mundo por número de hablantes nativos.</p></div>
-              <div className="fact reveal"><div className="ix">4</div><p>Los hispanos han representado más de la mitad del crecimiento total de la población de Estados Unidos desde 2010.</p></div>
+              <div className="fact reveal"><div className="ix">1</div><p>Texas tiene hoy una población hispana ligeramente mayor que la población blanca no hispana. Los hispanos representan alrededor del 40% de los habitantes del estado.</p></div>
+              <div className="fact reveal"><div className="ix">2</div><p>Estados Unidos posee la segunda población hispanohablante más grande del mundo, solo detrás de México. Se estima que cerca de 59 millones de personas hablan español en el país.</p></div>
+              <div className="fact reveal"><div className="ix">3</div><p>Uno de cada cinco habitantes de Estados Unidos es hispano o latino. La población hispana supera los 65 millones y continúa creciendo más rápido que el resto de la población.</p></div>
+              <div className="fact reveal"><div className="ix">4</div><p>Los hispanos han impulsado cerca del 70% del crecimiento demográfico de Estados Unidos desde 2020. Su crecimiento proviene principalmente de nacimientos y de la inmigración.</p></div>
             </div>
           </div>
         </section>
@@ -117,7 +116,6 @@ export default function Nosotros() {
                   <p>Pedro y Gaby son de México, graduados del Seminario Río Grande en mayo de 2021. Pedro obtuvo su licenciatura en misiones y pastoral, graduado de PDV Argentina, y Gaby su licenciatura en Educación Cristiana.</p>
                   <p>Oran para ser misioneros en Medio Oriente.</p>
                   <div className="team-links">
-                    <span className="placeholder-note">◇ enlaces de redes y foto por confirmar</span>
                   </div>
                 </div>
               </article>

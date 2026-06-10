@@ -39,7 +39,7 @@ img{display:block;max-width:100%}
 .btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--body);font-weight:600;font-size:.95rem;padding:.62em 1.4em;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease;white-space:nowrap}
 .btn svg{width:1.05em;height:1.05em}
 .btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 6px 22px -6px rgba(215,38,61,.48)}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
 .btn-ghost:hover{border-color:var(--ink);transform:translateY(-1px)}
 .btn-dark{background:var(--ink);color:#fff}
@@ -334,3 +334,31 @@ footer .tagline{margin-top:20px;max-width:38ch;font-size:.97rem;color:rgba(255,2
 .mission .q{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.12;letter-spacing:-.02em}
 .mission .q .accent{color:var(--accent)}
 .mission .body{font-size:clamp(1.02rem,1.3vw,1.18rem);color:var(--ink-soft);margin-top:26px;max-width:62ch;text-wrap:pretty}
+
+/* ---------- micro-animations ---------- */
+@keyframes dotPulse{
+  0%{box-shadow:0 0 0 0 rgba(215,38,61,.45),0 0 0 4px var(--accent-soft)}
+  60%{box-shadow:0 0 0 9px rgba(215,38,61,0),0 0 0 4px var(--accent-soft)}
+  100%{box-shadow:0 0 0 0 rgba(215,38,61,0),0 0 0 4px var(--accent-soft)}
+}
+@keyframes blobDrift{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-16px) scale(1.04)}
+}
+.schedule-chip .dot{animation:dotPulse 2.4s ease-out infinite}
+.give::before{animation:blobDrift 8s ease-in-out infinite}
+.give::after{animation:blobDrift 11s ease-in-out infinite reverse}
+.pv-card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.pv-card:hover{transform:translateY(-5px);box-shadow:0 22px 46px -24px rgba(27,42,74,.28);border-color:var(--line-strong)}
+.fact{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.fact:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(27,42,74,.25);border-color:var(--line-strong)}
+.date-block{transition:transform .2s ease}
+.event-card:hover .date-block{transform:scale(1.08)}
+.sched-time{transition:color .2s ease}
+.sched-row:hover .sched-time{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){
+  .schedule-chip .dot,.give::before,.give::after{animation:none}
+  .pv-card:hover,.fact:hover{transform:none;box-shadow:none}
+  .event-card:hover .date-block{transform:none}
+  .btn-primary:hover{box-shadow:none}
+}

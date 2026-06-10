@@ -116,10 +116,7 @@ export default function Eventos() {
                     <div className="sched-time">10:30 <small style={{ fontSize: '.95rem', fontWeight: 600 }}>AM</small></div>
                     <div className="sched-info"><b>Reunión general</b><span>Domingos · Adoración y predicación de la Palabra</span></div>
                   </div>
-                  <div className="sched-row pending">
-                    <div className="sched-time">Entre semana</div>
-                    <div className="sched-info"><b>Estudios bíblicos y grupos</b><span className="placeholder-note">Horarios por confirmar con el pastor</span></div>
-                  </div>
+
                 </div>
               </div>
               <div className="addr-card reveal">
