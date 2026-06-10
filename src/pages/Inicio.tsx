@@ -3,7 +3,7 @@ import { Layout } from '../components/Layout'
 import { ImageSlot } from '../components/ImageSlot'
 import { useReveal } from '../lib/useReveal'
 import { useFetch } from '../lib/hooks'
-import { getAllSeries, getEvents, getMedios } from '../lib/api'
+import { getActiveSeries, getEvents, getMedios } from '../lib/api'
 import { formatDate } from '../lib/calendar'
 import type { WPEvent } from '../lib/types'
 import '../design/inicio.css'
@@ -43,7 +43,7 @@ function stripHtml(html: string): string {
 export default function Inicio() {
   useReveal()
 
-  const seriesState = useFetch(() => getAllSeries(), [])
+  const seriesState = useFetch(() => getActiveSeries(3), [])
   const eventsState = useFetch(() => getEvents(), [])
   const mediosState = useFetch(() => getMedios(), [])
   const galeria: Record<string, string> = mediosState.data?.galeria ?? {}
@@ -142,7 +142,7 @@ export default function Inicio() {
             )}
 
             <div className="sermon-grid">
-              {(seriesState.data ?? []).slice(0, 3).map((s, i) => {
+              {(seriesState.data ?? []).map((s, i) => {
                 const img = s.series_data.image_url
                 const grad = SERIES_GRADS[i % SERIES_GRADS.length]
                 return (
