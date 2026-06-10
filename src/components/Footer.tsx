@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom'
+import { useFetch } from '../lib/hooks'
+import { getMedios } from '../lib/api'
 
 export function Footer() {
+  const { data: medios } = useFetch(getMedios, [])
   return (
     <footer>
       <div className="wrap">
         <div className="foot-grid">
           <div>
             <div className="brand">
-              <span className="mark">IBR</span>
-              <span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span>
+              {medios?.site_logo_dark
+                ? <img src={medios.site_logo_dark} alt="Iglesia Bíblica Reformada" className="brand-logo" />
+                : <><span className="mark">IBR</span><span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span></>
+              }
             </div>
             <p className="tagline">Somos una iglesia centrada en la Palabra de Dios y comprometida con comunicar su Gloria por medio del Evangelio.</p>
             <div className="socials">
