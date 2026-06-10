@@ -84,6 +84,24 @@ export async function getPostBySlug(slug: string): Promise<WPPost> {
 }
 
 /* ── Medios fijos del sitio (plugin site-specific gtc-ibr-medios) ── */
+const MEDIOS_CACHE_KEY = 'gtc_medios_v1';
+let _mediosPromise: Promise<GtcMedios> | null = null;
+
 export function getMedios(): Promise<GtcMedios> {
-  return wpFetch<GtcMedios>('/gtc-ibr/v1/medios');
+  if (_mediosPromise) return _mediosPromise;
+  const cached = localStorage.getItem(MEDIOS_CACHE_KEY);
+  if (cached) {
+    const data = JSON.parse(cached) as GtcMedios;
+    // refresca en segundo plano sin bloquear
+    wpFetch<GtcMedios>('/gtc-ibr/v1/medios').then((fresh) => {
+      localStorage.setItem(MEDIOS_CACHE_KEY, JSON.stringify(fresh));
+    }).catch(() => {});
+    _mediosPromise = Promise.resolve(data);
+  } else {
+    _mediosPromise = wpFetch<GtcMedios>('/gtc-ibr/v1/medios').then((data) => {
+      localStorage.setItem(MEDIOS_CACHE_KEY, JSON.stringify(data));
+      return data;
+    });
+  }
+  return _mediosPromise;
 }
