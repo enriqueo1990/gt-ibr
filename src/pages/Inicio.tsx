@@ -129,23 +129,9 @@ export default function Inicio() {
               <div>
                 <span className="eyebrow">Predicación expositiva</span>
                 <h2 style={{ marginTop: 12 }}>Serie de sermones</h2>
-                <p>Creemos que la iglesia necesita la pura Palabra de Dios para crecer en madurez a la imagen de Cristo. Busca por serie, libro o predicador.</p>
+                <p>Creemos que la iglesia necesita la pura Palabra de Dios para crecer en madurez a la imagen de Cristo.</p>
               </div>
               <Link className="link-arrow" to="/sermones" style={{ marginBottom: 8, color: 'var(--gold)' }}>Ver todos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg></Link>
-            </div>
-
-            <div className="reveal">
-              <div className="search-bar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
-                <input type="text" placeholder="Buscar por serie, libro o predicador…" />
-              </div>
-              <div className="filters">
-                <button className="chip active" type="button">Todos</button>
-                <button className="chip" type="button">Colosenses</button>
-                <button className="chip" type="button">1 de Juan</button>
-                <button className="chip" type="button">Proverbios</button>
-                <button className="chip" type="button">Otros</button>
-              </div>
             </div>
 
             {seriesState.loading && (
@@ -156,7 +142,7 @@ export default function Inicio() {
             )}
 
             <div className="sermon-grid">
-              {(seriesState.data ?? []).map((s, i) => {
+              {(seriesState.data ?? []).slice(0, 3).map((s, i) => {
                 const img = s.series_data.image_url
                 const grad = SERIES_GRADS[i % SERIES_GRADS.length]
                 return (
