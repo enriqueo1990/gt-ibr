@@ -177,7 +177,8 @@ export default function Sermones() {
                           <span className="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
                         </div>
                         <div className="sermon-meta">
-                          {serie && <span className="serie">{serie}</span>}
+                          <span className="serie">{title}</span>
+                          {serie && <span className="sub">{serie}</span>}
                           <span className="sub">{sub}</span>
                           <div className="row">
                             {preacher && (
