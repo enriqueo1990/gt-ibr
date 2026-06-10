@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useFetch } from '../lib/hooks'
+import { getMedios } from '../lib/api'
 
 const NAV = [
   { to: '/', label: 'Inicio' },
@@ -14,6 +16,7 @@ const GIVING = 'https://ibr.churchcenter.com/giving'
 export function Header() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
+  const { data: medios } = useFetch(getMedios, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -30,8 +33,10 @@ export function Header() {
       <header>
         <div className="wrap nav">
           <Link className="brand" to="/" aria-label="Iglesia Bíblica Reformada">
-            <span className="mark">IBR</span>
-            <span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span>
+            {medios?.site_logo
+              ? <img src={medios.site_logo} alt="Iglesia Bíblica Reformada" className="brand-logo" />
+              : <><span className="mark">IBR</span><span className="name">Iglesia Bíblica Reformada<small>Denton, Texas</small></span></>
+            }
           </Link>
           <nav className="nav-links">
             {NAV.map((n) => (

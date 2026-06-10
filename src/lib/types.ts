@@ -116,6 +116,7 @@ export interface GtcMedios {
   hero_video: string;
   nosotros: { intro: string; greg: string; pedro: string };
   sermones_cta: string;
+  site_logo: string;
 }
 
 /** Vocabulario fijo de tipos de evento (gtc-eventos) */
