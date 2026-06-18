@@ -30,15 +30,6 @@ function locationLabel(ev: WPEvent): string {
   return ed.location_name || ed.address || ''
 }
 
-/** Strip de HTML para excerpt/content. */
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]+>/g, '').trim()
-}
-
-function descLabel(ev: WPEvent): string {
-  return stripHtml(ev.excerpt.rendered) || stripHtml(ev.content.rendered)
-}
-
 /** Mapea event_type a una de las clases del diseño: culto / estudio / especial. */
 function tagClass(eventType: string): 'culto' | 'estudio' | 'especial' {
   switch (eventType) {
@@ -174,7 +165,6 @@ export default function Eventos() {
                   const { m, d } = dateParts(ev.gtc_evento_data.start_date)
                   const loc = locationLabel(ev)
                   const when = whenLabel(ev)
-                  const desc = descLabel(ev)
                   const cls = tagClass(ev.gtc_evento_data.event_type)
                   const isOnline = ev.gtc_evento_data.format === 'online'
                   return (
@@ -186,7 +176,6 @@ export default function Eventos() {
                           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
                           {when}{loc ? ` · ${loc}` : ''}
                         </div>
-                        {desc && <p>{desc}</p>}
                         <div className="event-tags">
                           <span className={`event-tag ${cls}`}>{tagLabel(ev.gtc_evento_data.event_type)}</span>
                           {isOnline && <span className="event-tag">Online</span>}

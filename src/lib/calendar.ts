@@ -28,7 +28,7 @@ export function getGoogleCalUrl(event: WPEvent): string {
   const startStr = `${ed.start_date.replace(/-/g, '')}${ed.start_time ? 'T' + ed.start_time.replace(':', '') + '00' : ''}`;
   const endStr = `${(ed.end_date || ed.start_date).replace(/-/g, '')}${ed.end_time ? 'T' + ed.end_time.replace(':', '') + '00' : ''}`;
   const title = event.title.rendered;
-  const desc = event.excerpt.rendered.replace(/<[^>]+>/g, '');
+  const desc = '';
   const loc = ed.location_name || ed.address || '';
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(loc)}`;
 }
@@ -38,7 +38,7 @@ export function getICSContent(event: WPEvent): string {
   const startStr = `${ed.start_date.replace(/-/g, '')}${ed.start_time ? 'T' + ed.start_time.replace(':', '') + '00' : ''}`;
   const endStr = `${(ed.end_date || ed.start_date).replace(/-/g, '')}${ed.end_time ? 'T' + ed.end_time.replace(':', '') + '00' : ''}`;
   const title = event.title.rendered;
-  const desc = event.excerpt.rendered.replace(/<[^>]+>/g, '');
+  const desc = '';
   const loc = ed.location_name || ed.address || '';
   const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${startStr}\nDTEND:${endStr}\nSUMMARY:${title}\nDESCRIPTION:${desc}\nLOCATION:${loc}\nEND:VEVENT\nEND:VCALENDAR`;
   return `data:text/calendar;charset=utf8,${encodeURIComponent(ics)}`;

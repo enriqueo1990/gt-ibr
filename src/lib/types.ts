@@ -159,8 +159,6 @@ export interface WPEvent {
   id: number;
   slug: string;
   title: { rendered: string };
-  content: { rendered: string };
-  excerpt: { rendered: string };
   featured_image_url: string | null; // inyectado por el proxy o _embedded
   gtc_evento_data: WPEventData;
   _embedded?: {
