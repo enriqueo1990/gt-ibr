@@ -258,13 +258,13 @@ export default function Inicio() {
               {upcomingEvents.map((ev) => {
                 const ed = ev.gtc_evento_data
                 return (
-                  <article key={ev.id} className="event-card reveal" title={formatDate(ed.start_date)}>
+                  <Link key={ev.id} to={`/eventos#evento-${ev.id}`} className="event-card reveal" title={formatDate(ed.start_date)}>
                     <div className="date-block"><div className="m">{eventMonth(ed.start_date)}</div><div className="d">{eventDay(ed.start_date)}</div></div>
                     <div className="event-info">
                       <h4 dangerouslySetInnerHTML={{ __html: ev.title.rendered }} />
                       <div className="when"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>{eventWhen(ed)}</div>
                     </div>
-                  </article>
+                  </Link>
                 )
               })}
             </div>

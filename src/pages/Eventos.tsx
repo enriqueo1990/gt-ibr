@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { useReveal } from '../lib/useReveal'
 import { useFetch } from '../lib/hooks'
@@ -65,6 +66,18 @@ export default function Eventos() {
   useReveal()
 
   const { data: events, loading, error } = useFetch(() => getEvents())
+  const { hash } = useLocation()
+
+  // Al llegar con un ancla (#evento-N) desde la home, desplazar al evento
+  // una vez que los datos están renderizados.
+  useEffect(() => {
+    if (!hash || loading) return
+    const el = document.getElementById(hash.slice(1))
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      el.classList.add('event-card--target')
+    }
+  }, [hash, loading, events])
 
   // Separar y ordenar en cliente (no confiar en el orden del server).
   // Próximos: los que no han finalizado, por start_date ascendente.
@@ -168,7 +181,7 @@ export default function Eventos() {
                   const cls = tagClass(ev.gtc_evento_data.event_type)
                   const isOnline = ev.gtc_evento_data.format === 'online'
                   return (
-                    <article key={ev.id} className="event-card reveal in">
+                    <article key={ev.id} id={`evento-${ev.id}`} className="event-card reveal in">
                       <div className="date-block"><div className="m">{m}</div><div className="d">{d}</div></div>
                       <div className="event-info">
                         <h4 dangerouslySetInnerHTML={{ __html: ev.title.rendered }} />
