@@ -181,8 +181,14 @@ export default function Eventos() {
                           {isOnline && <span className="event-tag">Online</span>}
                         </div>
                         <div className="event-cal">
-                          <a className="btn btn-dark" href={getGoogleCalUrl(ev)} target="_blank" rel="noopener">Google Calendar</a>
-                          <a className="btn btn-dark" href={getICSContent(ev)} download={`${ev.slug}.ics`}>Descargar .ics</a>
+                          <a className="cal-link" href={getGoogleCalUrl(ev)} target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18M8 2v4M16 2v4" /></svg>
+                            Añadir a Google Calendar
+                          </a>
+                          <a className="cal-link" href={getICSContent(ev)} download={`${ev.slug}.ics`}>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 2a4 4 0 0 0-4 4 4 4 0 0 0-4-4M12 6v15M5 21h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z" /></svg>
+                            Añadir a Apple Calendar
+                          </a>
                         </div>
                       </div>
                     </article>

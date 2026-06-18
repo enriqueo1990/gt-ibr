@@ -250,6 +250,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdro
 .event-tag.culto{background:var(--accent-soft);color:var(--accent)}
 .event-tag.estudio{background:var(--gold-soft);color:#9c6e00}
 .event-tag.especial{background:rgba(27,42,74,.08);color:var(--indigo)}
+.event-tags{display:flex;flex-wrap:wrap;gap:6px}
+.event-cal{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.cal-link{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--ink);transition:color .15s ease}
+.cal-link svg{width:16px;height:16px;flex:none;color:var(--muted)}
+.cal-link:hover{color:var(--accent)}
+.cal-link:hover svg{color:var(--accent)}
 .placeholder-note{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;letter-spacing:.02em;color:var(--muted);background:var(--surface);border:1px dashed var(--line-strong);border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:8px}
 
 /* ---------- give band ---------- */
