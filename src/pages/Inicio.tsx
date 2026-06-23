@@ -205,6 +205,10 @@ export default function Inicio() {
                 <p className="muted" style={{ fontSize: '1.05rem', maxWidth: '40ch', marginBottom: 14 }}>Nos reunimos cada domingo. Llega unos minutos antes y serás bienvenido — no necesitas nada especial para asistir.</p>
                 <div className="schedule-list">
                   <div className="sched-row">
+                    <div className="sched-time">9:00 <small style={{ fontSize: '.95rem', fontWeight: 600 }}>AM</small></div>
+                    <div className="sched-info"><b>Escuela bíblica</b><span>Domingos · Estudio de la Palabra para todas las edades</span></div>
+                  </div>
+                  <div className="sched-row">
                     <div className="sched-time">10:00 <small style={{ fontSize: '.95rem', fontWeight: 600 }}>AM</small></div>
                     <div className="sched-info"><b>Reunión de oración</b><span>Domingos · Comenzamos juntos en oración</span></div>
                   </div>
